@@ -15,6 +15,7 @@
 import 'package:demo_app/login/page/login_page.dart';
 import 'package:demo_app/register/page/register_page.dart';
 import 'package:demo_app/splash/page/splash_page.dart';
+import 'package:demo_app/verify_email/page/verify_email_page.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -33,6 +34,10 @@ final router = GoRouter(
     GoRoute(
       path: RegisterPage.route,
       builder: (context, state) => const RegisterPage(),
+    ),
+    GoRoute(
+      path: VerifyEmailPage.route,
+      builder: (context, state) => const VerifyEmailPage(),
     ),
   ],
 );

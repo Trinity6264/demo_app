@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:demo_app/login/page/login_page.dart';
+import 'package:demo_app/verify_email/page/verify_email_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,8 +47,10 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
-            child: const Text("Login"),
+            onPressed: () {
+              context.go(VerifyEmailPage.route);
+            },
+            child: const Text("Register"),
           ),
           TextButton(
             onPressed: () {
