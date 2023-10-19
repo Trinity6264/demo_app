@@ -4,6 +4,12 @@ import 'package:demo_app/router/routers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+
+final logger = Logger(
+  // Customize the printer.
+  printer: PrettyPrinter(methodCount: 0, lineLength: 1000),
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

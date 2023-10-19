@@ -17,7 +17,7 @@ _$LoginStateModelImpl _$$LoginStateModelImplFromJson(
           : const PasswordJsonConverter().fromJson(json['password'] as String),
       status: $enumDecodeNullable(_$LoginStatusEnumMap, json['status']) ??
           LoginStatus.initial,
-      $type: json['runtimeType'] as String?,
+      isLoginFormValidated: json['isLoginFormValidated'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$LoginStateModelImplToJson(
@@ -26,7 +26,7 @@ Map<String, dynamic> _$$LoginStateModelImplToJson(
       'email': const EmailJsonConverter().toJson(instance.email),
       'password': const PasswordJsonConverter().toJson(instance.password),
       'status': _$LoginStatusEnumMap[instance.status]!,
-      'runtimeType': instance.$type,
+      'isLoginFormValidated': instance.isLoginFormValidated,
     };
 
 const _$LoginStatusEnumMap = {
@@ -35,26 +35,3 @@ const _$LoginStatusEnumMap = {
   LoginStatus.success: 'success',
   LoginStatus.failure: 'failure',
 };
-
-_$LoginStateModelResetImpl _$$LoginStateModelResetImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LoginStateModelResetImpl(
-      email: json['email'] == null
-          ? const Email.pure()
-          : const EmailJsonConverter().fromJson(json['email'] as String),
-      password: json['password'] == null
-          ? const Password.pure()
-          : const PasswordJsonConverter().fromJson(json['password'] as String),
-      status: $enumDecodeNullable(_$LoginStatusEnumMap, json['status']) ??
-          LoginStatus.initial,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$LoginStateModelResetImplToJson(
-        _$LoginStateModelResetImpl instance) =>
-    <String, dynamic>{
-      'email': const EmailJsonConverter().toJson(instance.email),
-      'password': const PasswordJsonConverter().toJson(instance.password),
-      'status': _$LoginStatusEnumMap[instance.status]!,
-      'runtimeType': instance.$type,
-    };

@@ -14,6 +14,7 @@
 
 import 'package:demo_app/authentication/exception/login_exception.dart';
 import 'package:demo_app/authentication/exception/sign_up_exception.dart';
+import 'package:demo_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -39,8 +40,10 @@ class AuthenticationRepository {
       );
       return Success(resp);
     } on FirebaseAuthException catch (e) {
+      logger.e(e);
       return Error(LoginException.fromFirebaseAuthCode(e.code));
     } catch (e) {
+      logger.e(e);
       return const Error(LoginException());
     }
   }

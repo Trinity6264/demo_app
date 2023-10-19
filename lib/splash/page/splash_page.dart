@@ -27,7 +27,6 @@ class SplashPage extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(() {
       Future.delayed(const Duration(seconds: 3), () {
-        // context.pushReplacementNamed(LoginPage.route);
         context.go(LoginPage.route);
       });
       return;

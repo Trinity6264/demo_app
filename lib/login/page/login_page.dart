@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:demo_app/login/components/login_button.dart';
+import 'package:demo_app/login/components/login_email_input.dart';
+import 'package:demo_app/login/components/login_password_input.dart';
 import 'package:demo_app/register/page/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -40,20 +43,9 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TextField(
-              decoration: InputDecoration(
-                hintText: "Enter your email here",
-              ),
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: "Enter your Password here",
-              ),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("Login"),
-            ),
+            const LoginEmailInput(),
+            const LoginPasswordInput(),
+            const LoginButton(),
             TextButton(
               onPressed: () {
                 context.go(RegisterPage.route);

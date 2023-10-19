@@ -17,7 +17,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 class Email extends FormzInput<String, EmailValidationError> {
   const Email.pure() : super.pure("");
-  const Email.dirty([super.value = ""]) : super.dirty();
+  const Email.dirty({String value = ""}) : super.dirty(value);
 
   static final _emailRegExp = RegExp(
     r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
@@ -25,9 +25,11 @@ class Email extends FormzInput<String, EmailValidationError> {
 
   @override
   EmailValidationError? validator(String? value) {
-    return _emailRegExp.hasMatch(value ?? "")
-        ? null
-        : EmailValidationError.invalid;
+    if (value == null || value.isEmpty) {
+      return EmailValidationError.empty;
+    }
+
+    return _emailRegExp.hasMatch(value) ? null : EmailValidationError.invalid;
   }
 }
 
@@ -36,7 +38,7 @@ class EmailJsonConverter implements JsonConverter<Email, String> {
 
   @override
   Email fromJson(String json) {
-    return Email.dirty(json);
+    return Email.dirty(value: json);
   }
 
   @override
@@ -46,7 +48,9 @@ class EmailJsonConverter implements JsonConverter<Email, String> {
 }
 
 enum EmailValidationError {
-  invalid("Email is not valid");
+  /// Generic invalid error.
+  invalid("Email is not valid"),
+  empty("Email cannot be empty");
 
   const EmailValidationError(this.message);
 

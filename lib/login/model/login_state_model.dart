@@ -18,13 +18,8 @@ class LoginStateModel with _$LoginStateModel {
     @EmailJsonConverter() @Default(Email.pure()) Email email,
     @PasswordJsonConverter() @Default(Password.pure()) Password password,
     @Default(LoginStatus.initial) LoginStatus status,
+    @Default(false) bool isLoginFormValidated,
   }) = _LoginStateModel;
-
-  factory LoginStateModel.reset({
-    @EmailJsonConverter() @Default(Email.pure()) Email email,
-    @PasswordJsonConverter() @Default(Password.pure()) Password password,
-    @Default(LoginStatus.initial) LoginStatus status,
-  }) = _LoginStateModelReset;
 
   factory LoginStateModel.fromJson(Map<String, dynamic> json) =>
       _$LoginStateModelFromJson(json);

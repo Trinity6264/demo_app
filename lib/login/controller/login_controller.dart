@@ -17,26 +17,37 @@ import 'package:demo_app/authentication/repository/authenticatiom_repository.dar
 import 'package:demo_app/form_inputs/email.dart';
 import 'package:demo_app/form_inputs/password.dart';
 import 'package:demo_app/login/model/login_state_model.dart';
+import 'package:demo_app/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:formz/formz.dart';
 
 class LoginController extends StateNotifier<LoginStateModel> {
   LoginController() : super(LoginStateModel());
   final _authRepository = getIt<AuthenticationRepository>();
 
   void emailChanged(String value) {
-    final email = Email.dirty(value);
-    state = state.copyWith(email: email);
+    final email = Email.dirty(value: value);
+    state = state.copyWith(
+      email: email,
+      isLoginFormValidated: Formz.validate([email, state.password]),
+    );
+    logger.i(state);
   }
 
   void passwordChanged(String value) {
     final password = Password.dirty(value);
-    state = state.copyWith(password: password);
+    state = state.copyWith(
+      password: password,
+      isLoginFormValidated: Formz.validate([state.email, password]),
+    );
+    logger.i(state);
   }
 
   Future<void> login() async {
     state = state.copyWith(status: LoginStatus.loading);
     final email = state.email.value;
     final password = state.password.value;
+    logger.i("state: $state");
     final result = await _authRepository.signInWithEmailAndPassword(
       email: email,
       password: password,
@@ -44,17 +55,17 @@ class LoginController extends StateNotifier<LoginStateModel> {
 
     result.when(
       (userCredential) {
+        logger.i(userCredential);
         state = state.copyWith(
           status: LoginStatus.success,
         );
       },
       (exception) {
+        logger.e(exception.message);
         state = state.copyWith(
           status: LoginStatus.failure,
         );
       },
     );
   }
-
-  
 }
