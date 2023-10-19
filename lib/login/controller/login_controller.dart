@@ -29,6 +29,7 @@ class LoginController extends StateNotifier<LoginStateModel> {
     final email = Email.dirty(value: value);
     state = state.copyWith(
       email: email,
+      password: state.password,
       isLoginFormValidated: Formz.validate([email, state.password]),
     );
     logger.i(state);
@@ -38,6 +39,7 @@ class LoginController extends StateNotifier<LoginStateModel> {
     final password = Password.dirty(value);
     state = state.copyWith(
       password: password,
+      email: state.email,
       isLoginFormValidated: Formz.validate([state.email, password]),
     );
     logger.i(state);
