@@ -33,29 +33,35 @@ class LoginPage extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          const TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your email here",
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const TextField(
+              decoration: InputDecoration(
+                hintText: "Enter your email here",
+              ),
             ),
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your Password here",
+            const TextField(
+              decoration: InputDecoration(
+                hintText: "Enter your Password here",
+              ),
             ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text("Login"),
-          ),
-          TextButton(
-            onPressed: () {
-              context.go(RegisterPage.route);
-            },
-            child: const Text("Not registered yet? Register here!"),
-          ),
-        ],
+            TextButton(
+              onPressed: () {},
+              child: const Text("Login"),
+            ),
+            TextButton(
+              onPressed: () {
+                context.go(RegisterPage.route);
+              },
+              child: const Text("Not registered yet? Register here!"),
+            ),
+          ],
+        ),
       ),
     );
   }

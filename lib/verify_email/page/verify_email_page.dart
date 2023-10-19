@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:demo_app/login/page/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 
 class VerifyEmailPage extends StatelessWidget {
   const VerifyEmailPage({super.key});
@@ -41,7 +44,9 @@ class VerifyEmailPage extends StatelessWidget {
               child: const Text("Send email verification"),
             ),
             TextButton(
-              onPressed: () async {},
+              onPressed: () async {
+                context.go(LoginPage.route);
+              },
               child: const Text("Restart"),
             )
           ],
