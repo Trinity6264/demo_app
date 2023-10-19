@@ -1,3 +1,4 @@
+import 'package:demo_app/app/service_locator.dart';
 import 'package:demo_app/firebase_options.dart';
 import 'package:demo_app/router/routers.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setupReisterService();
   runApp(const ProviderScope(child: MyApp()));
 }
 
