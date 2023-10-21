@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:formz/formz.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
 class Password extends FormzInput<String, PasswordValidationError> {
   const Password.pure() : super.pure("");

@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/common/custom_textfield.dart';
-import 'package:demo_app/login/controller/login_controller.dart';
-import 'package:demo_app/login/model/login_state_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:demo_app/common/custom_textfield.dart";
+import "package:demo_app/login/controller/login_controller.dart";
+import "package:demo_app/login/model/login_state_model.dart";
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class LoginEmailInput extends ConsumerWidget {
   const LoginEmailInput({super.key});
@@ -30,7 +30,6 @@ class LoginEmailInput extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomTextField(
       hintText: "Enter your email here",
-      errorText: ref.watch(loginController).email.displayError?.message,
       inputType: TextInputType.emailAddress,
       onChanged: (val) {
         ref.read(loginController.notifier).emailChanged(val);

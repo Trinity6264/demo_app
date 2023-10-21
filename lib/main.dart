@@ -1,10 +1,10 @@
-import 'package:demo_app/app/service_locator.dart';
-import 'package:demo_app/firebase_options.dart';
-import 'package:demo_app/router/routers.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
+import "package:demo_app/app/service_locator.dart";
+import "package:demo_app/firebase_options.dart";
+import "package:demo_app/router/routers.dart";
+import "package:firebase_core/firebase_core.dart";
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:logger/logger.dart";
 
 final logger = Logger(
   // Customize the printer.
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
-      title: 'Demo',
+      title: "Demo",
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,

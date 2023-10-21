@@ -12,17 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/authentication/repository/authenticatiom_repository.dart';
-import 'package:demo_app/common/utils.dart';
-import 'package:get_it/get_it.dart';
+import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
+import "package:demo_app/common/utils.dart";
+import "package:get_it/get_it.dart";
 
 final getIt = GetIt.instance;
 
 void setupReisterService() {
-  getIt.registerLazySingleton<AuthenticationRepository>(
-    AuthenticationRepository.new,
-  );
-  getIt.registerLazySingleton<Utils>(
-    Utils.new,
-  );
+  getIt
+    ..registerLazySingleton<AuthenticationRepository>(
+      AuthenticationRepository.new,
+    )
+    ..registerLazySingleton<Utils>(
+      Utils.new,
+    );
 }

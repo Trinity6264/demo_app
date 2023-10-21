@@ -20,12 +20,9 @@ LoginStateModel _$LoginStateModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginStateModel {
-  @EmailJsonConverter()
-  Email get email => throw _privateConstructorUsedError;
-  @PasswordJsonConverter()
-  Password get password => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   LoginStatus get status => throw _privateConstructorUsedError;
-  bool get isLoginFormValidated => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +36,7 @@ abstract class $LoginStateModelCopyWith<$Res> {
           LoginStateModel value, $Res Function(LoginStateModel) then) =
       _$LoginStateModelCopyWithImpl<$Res, LoginStateModel>;
   @useResult
-  $Res call(
-      {@EmailJsonConverter() Email email,
-      @PasswordJsonConverter() Password password,
-      LoginStatus status,
-      bool isLoginFormValidated});
+  $Res call({String email, String password, LoginStatus status});
 }
 
 /// @nodoc
@@ -62,25 +55,20 @@ class _$LoginStateModelCopyWithImpl<$Res, $Val extends LoginStateModel>
     Object? email = null,
     Object? password = null,
     Object? status = null,
-    Object? isLoginFormValidated = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
-      isLoginFormValidated: null == isLoginFormValidated
-          ? _value.isLoginFormValidated
-          : isLoginFormValidated // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -93,11 +81,7 @@ abstract class _$$LoginStateModelImplCopyWith<$Res>
       __$$LoginStateModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@EmailJsonConverter() Email email,
-      @PasswordJsonConverter() Password password,
-      LoginStatus status,
-      bool isLoginFormValidated});
+  $Res call({String email, String password, LoginStatus status});
 }
 
 /// @nodoc
@@ -114,25 +98,20 @@ class __$$LoginStateModelImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? status = null,
-    Object? isLoginFormValidated = null,
   }) {
     return _then(_$LoginStateModelImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as String,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
-      isLoginFormValidated: null == isLoginFormValidated
-          ? _value.isLoginFormValidated
-          : isLoginFormValidated // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -141,32 +120,24 @@ class __$$LoginStateModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginStateModelImpl implements _LoginStateModel {
   _$LoginStateModelImpl(
-      {@EmailJsonConverter() this.email = const Email.pure(),
-      @PasswordJsonConverter() this.password = const Password.pure(),
-      this.status = LoginStatus.initial,
-      this.isLoginFormValidated = false});
+      {this.email = "", this.password = "", this.status = LoginStatus.initial});
 
   factory _$LoginStateModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginStateModelImplFromJson(json);
 
   @override
   @JsonKey()
-  @EmailJsonConverter()
-  final Email email;
+  final String email;
   @override
   @JsonKey()
-  @PasswordJsonConverter()
-  final Password password;
+  final String password;
   @override
   @JsonKey()
   final LoginStatus status;
-  @override
-  @JsonKey()
-  final bool isLoginFormValidated;
 
   @override
   String toString() {
-    return 'LoginStateModel(email: $email, password: $password, status: $status, isLoginFormValidated: $isLoginFormValidated)';
+    return 'LoginStateModel(email: $email, password: $password, status: $status)';
   }
 
   @override
@@ -177,15 +148,12 @@ class _$LoginStateModelImpl implements _LoginStateModel {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.isLoginFormValidated, isLoginFormValidated) ||
-                other.isLoginFormValidated == isLoginFormValidated));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, status, isLoginFormValidated);
+  int get hashCode => Object.hash(runtimeType, email, password, status);
 
   @JsonKey(ignore: true)
   @override
@@ -204,24 +172,19 @@ class _$LoginStateModelImpl implements _LoginStateModel {
 
 abstract class _LoginStateModel implements LoginStateModel {
   factory _LoginStateModel(
-      {@EmailJsonConverter() final Email email,
-      @PasswordJsonConverter() final Password password,
-      final LoginStatus status,
-      final bool isLoginFormValidated}) = _$LoginStateModelImpl;
+      {final String email,
+      final String password,
+      final LoginStatus status}) = _$LoginStateModelImpl;
 
   factory _LoginStateModel.fromJson(Map<String, dynamic> json) =
       _$LoginStateModelImpl.fromJson;
 
   @override
-  @EmailJsonConverter()
-  Email get email;
+  String get email;
   @override
-  @PasswordJsonConverter()
-  Password get password;
+  String get password;
   @override
   LoginStatus get status;
-  @override
-  bool get isLoginFormValidated;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateModelImplCopyWith<_$LoginStateModelImpl> get copyWith =>

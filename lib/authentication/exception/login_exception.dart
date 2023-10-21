@@ -13,7 +13,6 @@
 // limitations under the License.
 
 class LoginException implements Exception {
-  final String message;
 
   const LoginException([this.message = "Unknown error"]);
 
@@ -32,7 +31,8 @@ class LoginException implements Exception {
       "user-mismatch" => const LoginException("User mismatch"),
       "account-exists-with-different-credential" =>
         const LoginException("Account exists with different credential"),
-      String() => const LoginException("Unknown error"),
+      String() => const LoginException(),
     };
   }
+  final String message;
 }

@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/authentication/exception/login_exception.dart';
-import 'package:demo_app/authentication/exception/sign_up_exception.dart';
-import 'package:demo_app/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:multiple_result/multiple_result.dart';
+import "package:demo_app/authentication/exception/login_exception.dart";
+import "package:demo_app/authentication/exception/sign_up_exception.dart";
+import "package:demo_app/main.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:multiple_result/multiple_result.dart";
 
 class AuthenticationRepository {
   const AuthenticationRepository();

@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/login/page/login_page.dart';
-import 'package:demo_app/verify_email/page/verify_email_page.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import "package:demo_app/login/page/login_page.dart";
+import "package:demo_app/verify_email/page/verify_email_page.dart";
+import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
-  static const route = '/register';
+  static const route = "/register";
 
   @override
   Widget build(BuildContext context) {

@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/common/custom_textfield.dart';
-import 'package:demo_app/login/controller/login_controller.dart';
-import 'package:demo_app/login/model/login_state_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:demo_app/common/custom_textfield.dart";
+import "package:demo_app/login/controller/login_controller.dart";
+import "package:demo_app/login/model/login_state_model.dart";
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class LoginPasswordInput extends ConsumerWidget {
   const LoginPasswordInput({super.key});
@@ -30,10 +30,9 @@ class LoginPasswordInput extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomTextField(
       hintText: "Enter your password here",
-      errorText: ref.watch(loginController).password.displayError?.message,
       inputType: TextInputType.visiblePassword,
       onChanged: (val) {
-        ref.read(loginController.notifier).passwordChanged(val);
+        ref.watch(loginController.notifier).passwordChanged(val);
       },
     );
   }

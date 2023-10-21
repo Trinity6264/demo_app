@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async';
+import "dart:async";
 
-import 'package:demo_app/login/page/login_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
+import "package:demo_app/login/page/login_page.dart";
+import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:go_router/go_router.dart";
 
 class SplashPage extends HookWidget {
   const SplashPage({super.key});
-  static const route = '/';
+  static const route = "/";
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SplashPage extends HookWidget {
         context.go(LoginPage.route);
       });
       return;
-    }, []);
+    }, [],);
 
     return const Scaffold(
       body: Center(

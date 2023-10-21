@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/app/service_locator.dart';
-import 'package:demo_app/common/utils.dart';
-import 'package:demo_app/login/controller/login_controller.dart';
-import 'package:demo_app/login/model/login_state_model.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:demo_app/app/service_locator.dart";
+import "package:demo_app/common/utils.dart";
+import "package:demo_app/login/controller/login_controller.dart";
+import "package:demo_app/login/model/login_state_model.dart";
+import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class LoginButton extends ConsumerWidget {
   const LoginButton({super.key});
@@ -34,25 +34,30 @@ class LoginButton extends ConsumerWidget {
     final loadingStatus =
         ref.watch(loginController.select((value) => value.status));
 
-    final loginFormValidated = ref
-        .watch(loginController.select((value) => value.isLoginFormValidated));
     return switch (loadingStatus) {
       LoginStatus.loading => const Center(
           child: CircularProgressIndicator.adaptive(),
         ),
       (LoginStatus.success || LoginStatus.failure || LoginStatus.initial) =>
         TextButton(
-          onPressed: () {
-            if (loginFormValidated) {
-              ref.read(loginController.notifier).login();
-              return;
-            } else {
-              utils.showAlertDialog(
-                context: context,
-                title: "Invalid form",
-                info: "Please check your email and password",
-              );
-            }
+          onPressed: () async{
+            await ref.read(loginController.notifier).login(
+                  onError: (message) {
+                    utils.showAlertDialog(
+                      context: context,
+                      title: "Information",
+                      info: message,
+                    );
+                  },
+                  onFailed: (message) {
+                    utils.showAlertDialog(
+                      context: context,
+                      title: "Information",
+                      info: message,
+                    );
+                  },
+                  onSuccess: (userCredential) {},
+                );
           },
           child: const Text("Login"),
         )

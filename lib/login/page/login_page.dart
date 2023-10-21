@@ -12,20 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/login/components/login_button.dart';
-import 'package:demo_app/login/components/login_email_input.dart';
-import 'package:demo_app/login/components/login_password_input.dart';
-import 'package:demo_app/register/page/register_page.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import "package:demo_app/login/components/login_button.dart";
+import "package:demo_app/login/components/login_email_input.dart";
+import "package:demo_app/login/components/login_password_input.dart";
+import "package:demo_app/register/page/register_page.dart";
+import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-  static const route = '/login';
+  static const route = "/login";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.home),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.person),
+          ),
+        ],
+      ),
       appBar: AppBar(
         elevation: 2,
         title: const Text(

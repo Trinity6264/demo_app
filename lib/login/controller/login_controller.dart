@@ -12,43 +12,58 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/app/service_locator.dart';
-import 'package:demo_app/authentication/repository/authenticatiom_repository.dart';
-import 'package:demo_app/form_inputs/email.dart';
-import 'package:demo_app/form_inputs/password.dart';
-import 'package:demo_app/login/model/login_state_model.dart';
-import 'package:demo_app/main.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:formz/formz.dart';
+import "package:demo_app/app/service_locator.dart";
+import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
+import "package:demo_app/login/model/login_state_model.dart";
+import "package:demo_app/main.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class LoginController extends StateNotifier<LoginStateModel> {
   LoginController() : super(LoginStateModel());
   final _authRepository = getIt<AuthenticationRepository>();
 
   void emailChanged(String value) {
-    final email = Email.dirty(value: value);
-    state = state.copyWith(
-      email: email,
-      password: state.password,
-      isLoginFormValidated: Formz.validate([email, state.password]),
-    );
+    state = state.copyWith(email: value);
     logger.i(state);
   }
 
   void passwordChanged(String value) {
-    final password = Password.dirty(value);
-    state = state.copyWith(
-      password: password,
-      email: state.email,
-      isLoginFormValidated: Formz.validate([state.email, password]),
-    );
+    state = state.copyWith(password: value);
     logger.i(state);
   }
 
-  Future<void> login() async {
+  Future<void> login({
+    required void Function(UserCredential userCredential) onSuccess,
+    required void Function(String message) onFailed,
+    required void Function(String message) onError,
+  }) async {
     state = state.copyWith(status: LoginStatus.loading);
-    final email = state.email.value;
-    final password = state.password.value;
+    final email = state.email;
+    final password = state.password;
+    if (email.isEmpty || password.isEmpty) {
+      onError("Email or password is empty");
+      state = state.copyWith(
+        status: LoginStatus.failure,
+      );
+      return;
+    }
+    if (!email.contains("@")) {
+      onError("Email is invalid");
+      state = state.copyWith(
+        status: LoginStatus.failure,
+      );
+      return;
+    }
+
+    if (password.length < 6) {
+      onError("Password must be at least 6 characters");
+      state = state.copyWith(
+        status: LoginStatus.failure,
+      );
+      return;
+    }
+
     logger.i("state: $state");
     final result = await _authRepository.signInWithEmailAndPassword(
       email: email,
@@ -61,9 +76,11 @@ class LoginController extends StateNotifier<LoginStateModel> {
         state = state.copyWith(
           status: LoginStatus.success,
         );
+        onSuccess(userCredential);
       },
       (exception) {
         logger.e(exception.message);
+        onFailed(exception.message);
         state = state.copyWith(
           status: LoginStatus.failure,
         );

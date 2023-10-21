@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/splash/model/splash_model.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import "package:demo_app/splash/model/splash_model.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 final splashProvider = Provider<String>((ref) {
   ref.state = "AMoah";

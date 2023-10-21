@@ -13,7 +13,6 @@
 // limitations under the License.
 
 class SignUpException implements Exception {
-  final String message;
 
   const SignUpException([this.message = "Unknown error"]);
 
@@ -38,4 +37,5 @@ class SignUpException implements Exception {
       String() => const SignUpException(""),
     };
   }
+  final String message;
 }

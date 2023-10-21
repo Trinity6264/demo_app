@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:demo_app/login/page/login_page.dart';
-import 'package:demo_app/register/page/register_page.dart';
-import 'package:demo_app/splash/page/splash_page.dart';
-import 'package:demo_app/verify_email/page/verify_email_page.dart';
-import 'package:go_router/go_router.dart';
+import "package:demo_app/login/page/login_page.dart";
+import "package:demo_app/register/page/register_page.dart";
+import "package:demo_app/splash/page/splash_page.dart";
+import "package:demo_app/verify_email/page/verify_email_page.dart";
+import "package:go_router/go_router.dart";
 
 final router = GoRouter(
   onException: (context, state, router) {},
-  initialLocation: '/',
+  initialLocation: "/",
   debugLogDiagnostics: true,
   routes: <GoRoute>[
     GoRoute(

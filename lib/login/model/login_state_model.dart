@@ -1,9 +1,7 @@
-import 'package:demo_app/form_inputs/email.dart';
-import 'package:demo_app/form_inputs/password.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'login_state_model.freezed.dart';
-part 'login_state_model.g.dart';
+part "login_state_model.freezed.dart";
+part "login_state_model.g.dart";
 
 enum LoginStatus {
   initial,
@@ -15,10 +13,9 @@ enum LoginStatus {
 @freezed
 class LoginStateModel with _$LoginStateModel {
   factory LoginStateModel({
-    @EmailJsonConverter() @Default(Email.pure()) Email email,
-    @PasswordJsonConverter() @Default(Password.pure()) Password password,
+    @Default("") String email,
+    @Default("") String password,
     @Default(LoginStatus.initial) LoginStatus status,
-    @Default(false) bool isLoginFormValidated,
   }) = _LoginStateModel;
 
   factory LoginStateModel.fromJson(Map<String, dynamic> json) =>
