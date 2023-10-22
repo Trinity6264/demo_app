@@ -14,7 +14,7 @@
 
 import "package:demo_app/authentication/exception/login_exception.dart";
 import "package:demo_app/authentication/exception/sign_up_exception.dart";
-import "package:demo_app/main.dart";
+import "package:demo_app/bloc_observer.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:multiple_result/multiple_result.dart";
 
@@ -40,7 +40,7 @@ class AuthenticationRepository {
       );
       return Success(resp);
     } on FirebaseAuthException catch (e) {
-      logger.e(e);
+      logger.e("Error: ${e.message} Stack trace: ${e.stackTrace}");
       return Error(LoginException.fromFirebaseAuthCode(e.code));
     } catch (e) {
       logger.e(e);
@@ -61,6 +61,7 @@ class AuthenticationRepository {
       );
       return Success(resp);
     } on FirebaseAuthException catch (e) {
+      logger.e("Error: ${e.message} Stack trace: ${e.stackTrace}");
       return Error(SignUpException.fromFirebaseAuthCode(e.code));
     } catch (e) {
       return const Error(SignUpException());

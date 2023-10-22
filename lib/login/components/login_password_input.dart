@@ -13,23 +13,33 @@
 // limitations under the License.
 
 import "package:demo_app/common/custom_textfield.dart";
+import "package:demo_app/form_inputs/password.dart";
+import "package:demo_app/login/bloc/login_bloc.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 
 class LoginPasswordInput extends StatelessWidget {
   const LoginPasswordInput({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return CustomTextField(
+    return BlocSelector<LoginBloc, LoginState, Password>(
+      selector: (state) {
+        return state.password;
+      },
+      builder: (context, password) {
+        return CustomTextField(
           hintText: "Enter your password here",
+          errorText: password.displayError?.message,
+          inputAction: TextInputAction.done,
           inputType: TextInputType.visiblePassword,
-          
           onChanged: (value) {
-            
+            context.read<LoginBloc>().add(
+                  LoginEvent.onPasswordTextChanged(value: value),
+                );
           },
-      
-      
+        );
+      },
     );
   }
 }

@@ -12,33 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import "package:demo_app/common/custom_textfield.dart";
-import "package:demo_app/form_inputs/email.dart";
+import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
+import "package:demo_app/demo_app.dart";
 import "package:demo_app/login/bloc/login_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 
-class LoginEmailInput extends StatelessWidget {
-  const LoginEmailInput({super.key});
+class DemoAppBlocs extends StatelessWidget {
+  const DemoAppBlocs({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<LoginBloc, LoginState, Email>(
-      selector: (state) {
-        return state.email;
-      },
-      builder: (context, email) {
-        return CustomTextField(
-          hintText: "Enter your email here",
-          inputType: TextInputType.emailAddress,
-          errorText: email.displayError?.message,
-          onChanged: (val) {
-            context.read<LoginBloc>().add(
-                  LoginEvent.onEmailTextChanged(value: val),
-                );
-          },
-        );
-      },
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<AuthenticationRepository>(
+          create: (context) => const AuthenticationRepository(),
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<LoginBloc>(
+            create: (context) => LoginBloc(
+              authenticationRepository:
+                  context.read<AuthenticationRepository>(),
+            ),
+          ),
+        ],
+        child: const DemoApp(),
+      ),
     );
   }
 }

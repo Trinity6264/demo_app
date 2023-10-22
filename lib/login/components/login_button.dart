@@ -13,8 +13,11 @@
 // limitations under the License.
 
 import "package:demo_app/app/service_locator.dart";
+import "package:demo_app/bloc_observer.dart";
 import "package:demo_app/common/utils.dart";
+import "package:demo_app/login/bloc/login_bloc.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
 class LoginButton extends HookWidget {
@@ -24,23 +27,25 @@ class LoginButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        
-      },
-      child: const Text("Login"),
-    );
-    // return switch (loadingStatus) {
-    //   LoginStatus.loading => const Center(
-    //       child: CircularProgressIndicator.adaptive(),
-    //     ),
-    //   (LoginStatus.success || LoginStatus.failure || LoginStatus.initial) =>
-    //     TextButton(
-    //       onPressed: () async{
+    final isBusy = useState<bool>(false);
 
-    //       },
-    //       child: const Text("Login"),
-    //     )
-    // };
+    return switch (isBusy.value) {
+      true => const Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      false => TextButton(
+          onPressed: () async {
+            context.read<LoginBloc>().add(
+                  LoginEvent.onLogin(
+                    onSuccess: logger.i,
+                    onError: (message) {
+                      logger.e("Error message: $message");
+                    },
+                  ),
+                );
+          },
+          child: const Text("Login"),
+        )
+    };
   }
 }
