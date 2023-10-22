@@ -15,13 +15,13 @@
 import "package:demo_app/app/service_locator.dart";
 import "package:demo_app/bloc_observer.dart";
 import "package:demo_app/common/utils.dart";
-import "package:demo_app/login/bloc/login_bloc.dart";
+import "package:demo_app/register/bloc/register_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 
-class LoginButton extends HookWidget {
-  const LoginButton({super.key});
+class RegisterButton extends HookWidget {
+  const RegisterButton({super.key});
 
   static final utils = getIt.get<Utils>();
 
@@ -38,16 +38,9 @@ class LoginButton extends HookWidget {
         false => TextButton(
             onPressed: () async {
               isBusy.value = true;
-              context.read<LoginBloc>().add(
-                    LoginEvent.onLogin(
+              context.read<RegisterBloc>().add(
+                    RegisterEvent.onRegistered(
                       onSuccess: (credential) {
-                        utils.showAlertDialog(
-                          context: context,
-                          title: "Success",
-                          info: "Login Successful",
-                          icon: Icons.check_circle_outline,
-                          iconColor: Colors.greenAccent,
-                        );
                         isBusy.value = false;
                         logger.i(credential);
                       },
@@ -55,15 +48,15 @@ class LoginButton extends HookWidget {
                         isBusy.value = false;
                         utils.showAlertDialog(
                           context: context,
-                          title: "Error",
-                          info: message,
+                          title: message,
+                          info: "Error",
                         );
                         logger.e("Error message: $message");
                       },
                     ),
                   );
             },
-            child: const Text("Login"),
+            child: const Text("Register"),
           )
       },
     );

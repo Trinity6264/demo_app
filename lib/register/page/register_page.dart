@@ -13,7 +13,9 @@
 // limitations under the License.
 
 import "package:demo_app/login/page/login_page.dart";
-import "package:demo_app/verify_email/page/verify_email_page.dart";
+import "package:demo_app/register/components/register_button.dart";
+import "package:demo_app/register/components/register_email_input.dart";
+import "package:demo_app/register/components/register_password_input.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 
@@ -34,31 +36,22 @@ class RegisterPage extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          const TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your email here",
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const RegisterEmailInput(),
+            const RegisterPasswordInput(),
+            const RegisterButton(),
+            TextButton(
+              onPressed: () {
+                context.go(LoginPage.route);
+              },
+              child: const Text("Already registered? Login here!"),
             ),
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your Password here",
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              context.go(VerifyEmailPage.route);
-            },
-            child: const Text("Register"),
-          ),
-          TextButton(
-            onPressed: () {
-              context.go(LoginPage.route);
-            },
-            child: const Text("Already registered? Login here!"),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

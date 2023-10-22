@@ -15,6 +15,7 @@
 import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
 import "package:demo_app/demo_app.dart";
 import "package:demo_app/login/bloc/login_bloc.dart";
+import "package:demo_app/register/bloc/register_bloc.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 
@@ -33,6 +34,12 @@ class DemoAppBlocs extends StatelessWidget {
         providers: [
           BlocProvider<LoginBloc>(
             create: (context) => LoginBloc(
+              authenticationRepository:
+                  context.read<AuthenticationRepository>(),
+            ),
+          ),
+          BlocProvider<RegisterBloc>(
+            create: (context) => RegisterBloc(
               authenticationRepository:
                   context.read<AuthenticationRepository>(),
             ),

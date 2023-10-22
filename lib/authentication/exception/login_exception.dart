@@ -13,13 +13,14 @@
 // limitations under the License.
 
 class LoginException implements Exception {
-
   const LoginException([this.message = "Unknown error"]);
 
   // firebaseAuth code exceptions in factory constructor
   factory LoginException.fromFirebaseAuthCode(String code) {
     return switch (code) {
       "invalid-email" => const LoginException("Invalid email address"),
+      "INVALID_LOGIN_CREDENTIALS" =>
+        const LoginException("Email or Password is Invalid"),
       "user-disabled" => const LoginException("User disabled"),
       "user-not-found" => const LoginException("User not found"),
       "wrong-password" => const LoginException("Wrong password"),
