@@ -54,6 +54,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     try {
+      if (!state.isLoginFormValid) {
+        event.onError("Login forms is not valid");
+        return;
+      }
       final resp = await authenticationRepository.signInWithEmailAndPassword(
         email: state.email.value,
         password: state.password.value,

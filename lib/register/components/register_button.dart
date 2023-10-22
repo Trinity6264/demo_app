@@ -48,8 +48,8 @@ class RegisterButton extends HookWidget {
                         isBusy.value = false;
                         utils.showAlertDialog(
                           context: context,
-                          title: message,
-                          info: "Error",
+                          title: "Error",
+                          info: message,
                         );
                         logger.e("Error message: $message");
                       },

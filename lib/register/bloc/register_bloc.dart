@@ -54,7 +54,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Emitter<RegisterState> emit,
   ) async {
     try {
-      final resp = await authenticationRepository.createUserWithEmailAndPassword(
+      if (!state.isRegisterFormValid) {
+        event.onError("Register forms is not valid");
+        return;
+      }
+      final resp =
+          await authenticationRepository.createUserWithEmailAndPassword(
         email: state.email.value,
         password: state.password.value,
       );

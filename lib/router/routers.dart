@@ -27,9 +27,6 @@ final router = GoRouter(
   observers: [
     DemoAppRouterObserver(),
   ],
-  redirect: (context, state) async {
-    return "";
-  },
   initialLocation: "/",
   debugLogDiagnostics: true,
   routes: <GoRoute>[

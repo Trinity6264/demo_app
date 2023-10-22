@@ -14,6 +14,7 @@
 
 import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
 import "package:demo_app/common/utils.dart";
+import "package:demo_app/user/local_user.dart";
 import "package:get_it/get_it.dart";
 
 final getIt = GetIt.instance;
@@ -22,6 +23,9 @@ void setupReisterService() {
   getIt
     ..registerLazySingleton<AuthenticationRepository>(
       AuthenticationRepository.new,
+    )
+    ..registerLazySingleton<LocalUser>(
+      LocalUser.new,
     )
     ..registerLazySingleton<Utils>(
       Utils.new,

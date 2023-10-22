@@ -67,4 +67,13 @@ class AuthenticationRepository {
       return const Error(SignUpException());
     }
   }
+
+  Future<Result<void, void>> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+      return const Success(null);
+    } catch (e) {
+      return const Error(null);
+    }
+  }
 }

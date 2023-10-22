@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import "package:demo_app/authentication/bloc/authentication_bloc.dart";
 import "package:demo_app/authentication/repository/authenticatiom_repository.dart";
 import "package:demo_app/demo_app.dart";
 import "package:demo_app/login/bloc/login_bloc.dart";
@@ -32,6 +33,12 @@ class DemoAppBlocs extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
+          BlocProvider<AuthenticationBloc>(
+            create: (context) => AuthenticationBloc(
+              authenticationRepository:
+                  context.read<AuthenticationRepository>(),
+            )..add(const AuthenticationEvent.onAuthStateChanged()),
+          ),
           BlocProvider<LoginBloc>(
             create: (context) => LoginBloc(
               authenticationRepository:
