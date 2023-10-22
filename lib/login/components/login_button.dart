@@ -14,53 +14,33 @@
 
 import "package:demo_app/app/service_locator.dart";
 import "package:demo_app/common/utils.dart";
-import "package:demo_app/login/controller/login_controller.dart";
-import "package:demo_app/login/model/login_state_model.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 
-class LoginButton extends ConsumerWidget {
+class LoginButton extends HookWidget {
   const LoginButton({super.key});
-
-  static final loginController =
-      StateNotifierProvider<LoginController, LoginStateModel>(
-    (ref) => LoginController(),
-  );
 
   static final utils = getIt.get<Utils>();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final loadingStatus =
-        ref.watch(loginController.select((value) => value.status));
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        
+      },
+      child: const Text("Login"),
+    );
+    // return switch (loadingStatus) {
+    //   LoginStatus.loading => const Center(
+    //       child: CircularProgressIndicator.adaptive(),
+    //     ),
+    //   (LoginStatus.success || LoginStatus.failure || LoginStatus.initial) =>
+    //     TextButton(
+    //       onPressed: () async{
 
-    return switch (loadingStatus) {
-      LoginStatus.loading => const Center(
-          child: CircularProgressIndicator.adaptive(),
-        ),
-      (LoginStatus.success || LoginStatus.failure || LoginStatus.initial) =>
-        TextButton(
-          onPressed: () async{
-            await ref.read(loginController.notifier).login(
-                  onError: (message) {
-                    utils.showAlertDialog(
-                      context: context,
-                      title: "Information",
-                      info: message,
-                    );
-                  },
-                  onFailed: (message) {
-                    utils.showAlertDialog(
-                      context: context,
-                      title: "Information",
-                      info: message,
-                    );
-                  },
-                  onSuccess: (userCredential) {},
-                );
-          },
-          child: const Text("Login"),
-        )
-    };
+    //       },
+    //       child: const Text("Login"),
+    //     )
+    // };
   }
 }

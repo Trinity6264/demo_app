@@ -26,22 +26,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.home),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.person),
-          ),
-        ],
-      ),
+      
       appBar: AppBar(
         elevation: 2,
         title: const Text(
@@ -59,6 +44,7 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+           
             const LoginEmailInput(),
             const LoginPasswordInput(),
             const LoginButton(),

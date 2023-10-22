@@ -17,7 +17,7 @@ import "package:freezed_annotation/freezed_annotation.dart";
 
 class Password extends FormzInput<String, PasswordValidationError> {
   const Password.pure() : super.pure("");
-  const Password.dirty([super.value = ""]) : super.dirty();
+  const Password.dirty({required String value}) : super.dirty(value);
 
   static final _passwordRegExp = RegExp(
     r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
@@ -36,7 +36,7 @@ class PasswordJsonConverter implements JsonConverter<Password, String> {
 
   @override
   Password fromJson(String json) {
-    return Password.dirty(json);
+    return Password.dirty(value: json);
   }
 
   @override

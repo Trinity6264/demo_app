@@ -27,7 +27,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType inputType;
   final TextInputAction inputAction;
   final String? errorText;
-  final void Function(String val) onChanged;
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {

@@ -13,27 +13,22 @@
 // limitations under the License.
 
 import "package:demo_app/common/custom_textfield.dart";
-import "package:demo_app/login/controller/login_controller.dart";
-import "package:demo_app/login/model/login_state_model.dart";
+import "package:demo_app/main.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 
-class LoginEmailInput extends ConsumerWidget {
+class LoginEmailInput extends StatelessWidget {
   const LoginEmailInput({super.key});
-  
-  static final loginController =
-      StateNotifierProvider<LoginController, LoginStateModel>((ref) {
-    return LoginController();
-  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return CustomTextField(
-      hintText: "Enter your email here",
-      inputType: TextInputType.emailAddress,
-      onChanged: (val) {
-        ref.read(loginController.notifier).emailChanged(val);
-      },
-    );
+  Widget build(BuildContext context) {
+    return  CustomTextField(
+          hintText: "Enter your email here",
+          inputType: TextInputType.emailAddress,
+          onChanged: (val) {
+            logger.f("val: $val");
+          },
+        );
+      
+    
   }
 }

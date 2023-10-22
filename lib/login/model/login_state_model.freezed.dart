@@ -20,8 +20,10 @@ LoginStateModel _$LoginStateModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginStateModel {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  @EmailJsonConverter()
+  Email get email => throw _privateConstructorUsedError;
+  @PasswordJsonConverter()
+  Password get password => throw _privateConstructorUsedError;
   LoginStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +38,10 @@ abstract class $LoginStateModelCopyWith<$Res> {
           LoginStateModel value, $Res Function(LoginStateModel) then) =
       _$LoginStateModelCopyWithImpl<$Res, LoginStateModel>;
   @useResult
-  $Res call({String email, String password, LoginStatus status});
+  $Res call(
+      {@EmailJsonConverter() Email email,
+      @PasswordJsonConverter() Password password,
+      LoginStatus status});
 }
 
 /// @nodoc
@@ -60,11 +65,11 @@ class _$LoginStateModelCopyWithImpl<$Res, $Val extends LoginStateModel>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -81,7 +86,10 @@ abstract class _$$LoginStateModelImplCopyWith<$Res>
       __$$LoginStateModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, LoginStatus status});
+  $Res call(
+      {@EmailJsonConverter() Email email,
+      @PasswordJsonConverter() Password password,
+      LoginStatus status});
 }
 
 /// @nodoc
@@ -103,11 +111,11 @@ class __$$LoginStateModelImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Email,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -120,17 +128,21 @@ class __$$LoginStateModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginStateModelImpl implements _LoginStateModel {
   _$LoginStateModelImpl(
-      {this.email = "", this.password = "", this.status = LoginStatus.initial});
+      {@EmailJsonConverter() this.email = const Email.pure(),
+      @PasswordJsonConverter() this.password = const Password.pure(),
+      this.status = LoginStatus.initial});
 
   factory _$LoginStateModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginStateModelImplFromJson(json);
 
   @override
   @JsonKey()
-  final String email;
+  @EmailJsonConverter()
+  final Email email;
   @override
   @JsonKey()
-  final String password;
+  @PasswordJsonConverter()
+  final Password password;
   @override
   @JsonKey()
   final LoginStatus status;
@@ -172,17 +184,19 @@ class _$LoginStateModelImpl implements _LoginStateModel {
 
 abstract class _LoginStateModel implements LoginStateModel {
   factory _LoginStateModel(
-      {final String email,
-      final String password,
+      {@EmailJsonConverter() final Email email,
+      @PasswordJsonConverter() final Password password,
       final LoginStatus status}) = _$LoginStateModelImpl;
 
   factory _LoginStateModel.fromJson(Map<String, dynamic> json) =
       _$LoginStateModelImpl.fromJson;
 
   @override
-  String get email;
+  @EmailJsonConverter()
+  Email get email;
   @override
-  String get password;
+  @PasswordJsonConverter()
+  Password get password;
   @override
   LoginStatus get status;
   @override

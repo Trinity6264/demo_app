@@ -13,27 +13,23 @@
 // limitations under the License.
 
 import "package:demo_app/common/custom_textfield.dart";
-import "package:demo_app/login/controller/login_controller.dart";
-import "package:demo_app/login/model/login_state_model.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 
-class LoginPasswordInput extends ConsumerWidget {
+class LoginPasswordInput extends StatelessWidget {
   const LoginPasswordInput({super.key});
 
-  static final loginController =
-      StateNotifierProvider<LoginController, LoginStateModel>((ref) {
-    return LoginController();
-  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return CustomTextField(
-      hintText: "Enter your password here",
-      inputType: TextInputType.visiblePassword,
-      onChanged: (val) {
-        ref.watch(loginController.notifier).passwordChanged(val);
-      },
+          hintText: "Enter your password here",
+          inputType: TextInputType.visiblePassword,
+          
+          onChanged: (value) {
+            
+          },
+      
+      
     );
   }
 }
